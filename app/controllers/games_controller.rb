@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# games controller
 class GamesController < ApplicationController
   def new
     @letters = []
@@ -5,15 +8,13 @@ class GamesController < ApplicationController
   end
 
   def score
-    require 'open-uri'
-    require 'json'
     @letters = params[:letters].split(' ')
     @word = params[:word].upcase
 
-    @letter_included = @word.chars.all? { |letter| @word.count(letter) <= @letters.count(letter) }
-
     url = "https://wagon-dictionary.herokuapp.com/#{@word}"
-    response = open(url)
+    response = URI.open(url)
     @json_response = JSON.parse(response.read)
+
+    @letter_included = @word.chars.all? { |letter| @word.count(letter) <= @letters.count(letter) }
   end
 end
