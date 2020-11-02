@@ -3,6 +3,7 @@
   <% if @json_response["found"] %>
     <p>Congratulations! <%= @word %> is a valid English word!</p>
     <p>Your score: <%= @word.length ** 2  %></p>
+    <p>Total score: <%= session[:score] %></p>
   <% else %>
     <p>Sorry but <%= @word %> does not seem to be a valid English word...</p>
   <% end %>
