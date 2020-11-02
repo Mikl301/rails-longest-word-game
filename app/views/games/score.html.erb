@@ -1,0 +1,12 @@
+<h1>Result</h1>
+<% if @letter_included %>
+  <% if @json_response["found"] %>
+    <p>Congratulations! <%= @word %> is a valid English word!</p>
+  <% else %>
+    <p>Sorry but <%= @word %> does not seem to be a valid English word...</p>
+  <% end %>
+<% else %>
+  <p>Sorry but <%= @word %> can't be built out of <%= @letters.join(', ') %> </p>
+<% end %>
+
+<%= link_to 'Play again', new_path %>
